@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Import csv files to dataframe
 confirmed = pd.read_csv('covid19_confirmed.csv')
@@ -21,7 +21,7 @@ confirmed = confirmed.T
 deaths = deaths.T
 recovered = recovered.T
 
-#C alculate the increase of cases per day
+#Calculate the increase of cases per day
 new_cases = confirmed.copy()
 
 # Cases today - Cases yesterday
@@ -60,4 +60,32 @@ for day in range(0, len(confirmed)):
     overall_growth_rate.iloc[day] = (deaths.iloc[day] / confirmed.iloc[day]) * 100
 
 ##print(overall_growth_rate.tail(10))
-print(overall_growth_rate['Bangladesh'].tail(10))
+##print(overall_growth_rate['Bangladesh'].tail(10))
+
+death_rate = confirmed.copy()
+
+for day in range(0, len(confirmed)):
+    death_rate.iloc[day] = (deaths.iloc[day] / confirmed.iloc[day]) * 100
+
+# Adding visualization
+
+countries = ['Bangladesh', 'Canada', 'Australia', 'United Kingdom', 'India']
+
+for country in countries:
+
+    ax = plt.subplot()
+    ax.set_facecolor('black')
+    #dark grey
+    ax.figure.set_facecolor('#121212')
+    #tick parameters
+    ax.tick_params(axis='x', colors='white')
+    ax.tick_params(axis='y', colors='white')
+    ax.set_title('COVID-19 - Total Deaths By Country', color='white')
+
+
+for country in countries:
+    #cut off the first 30 days
+    deaths[country][30:].plot(label = country)
+
+plt.legend(loc='upper left')
+plt.show()
