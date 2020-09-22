@@ -1,5 +1,4 @@
 # Statistical-Analysis
-Analyzing a few key metrics for COVID-19 for specific countries
 
 I made a simple python program leveraging the popular data science modules- pandas and matplotlib, to create a bar chart to depict the number of active COVID-19 cases in my native country, Bangladesh. 
 
