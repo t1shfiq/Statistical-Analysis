@@ -8,4 +8,4 @@ The number of active cases is calculated by subtracting the deaths and recoverie
 
 The dataset source: https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases. 
 
-The graph is being currently used for a report I am writing for a Non-Profit Organization based in Bangladesh regarding the timeline of the flattening of the curve in the country and the reasons behind it.
+The graph is being currently used for a report I am writing for a Non-Profit Organization based in Bangladesh regarding the timeline of the flattening of the curve in the country and the reasons behind it. (Please refer to Graph.JPG)
