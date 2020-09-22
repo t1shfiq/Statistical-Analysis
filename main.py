@@ -26,20 +26,14 @@ new_cases = confirmed.copy()
 
 # Cases today - Cases yesterday
 # len(confirmed) corresponds to number of rows of the dataframe
-
 for day in range(1, len(confirmed)):
     new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
-
-#print(new_cases.tail(10))
-#print(confirmed.tail(10))
 
 # Calculates the growth rate per day using the new_cases from the previous loop
 growth_rate = confirmed.copy()
 
 for day in range(1, len(confirmed)):
     growth_rate.iloc[day] = (new_cases.iloc[day] / confirmed.iloc[day - 1]) * 100
-
-#print(growth_rate.tail(10))
 
 
 active_cases = confirmed.copy()
@@ -59,33 +53,17 @@ overall_growth_rate = confirmed.copy()
 for day in range(0, len(confirmed)):
     overall_growth_rate.iloc[day] = (deaths.iloc[day] / confirmed.iloc[day]) * 100
 
-##print(overall_growth_rate.tail(10))
-##print(overall_growth_rate['Bangladesh'].tail(10))
 
-death_rate = confirmed.copy()
-
-for day in range(0, len(confirmed)):
-    death_rate.iloc[day] = (deaths.iloc[day] / confirmed.iloc[day]) * 100
+countries = ['Bangladesh']
 
 # Adding visualization
 
-countries = ['Bangladesh', 'Canada', 'Australia', 'United Kingdom', 'India']
-
 for country in countries:
-
     ax = plt.subplot()
     ax.set_facecolor('black')
-    #dark grey
     ax.figure.set_facecolor('#121212')
-    #tick parameters
     ax.tick_params(axis='x', colors='white')
     ax.tick_params(axis='y', colors='white')
-    ax.set_title('COVID-19 - Total Deaths By Country', color='white')
-
-
-for country in countries:
-    #cut off the first 30 days
-    deaths[country][30:].plot(label = country)
-
-plt.legend(loc='upper left')
-plt.show()
+    ax.set_title(f'COVID-19 - Overall Active Growth Rate [{country}]', color='white')
+    overall_growth_rate[country][30:].plot.bar()
+    plt.show()
